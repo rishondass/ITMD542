@@ -1,0 +1,17 @@
+body {
+
+}
+nav {
+   background-color: red;
+   display: flex;
+   justify-content: flex-end;
+   margin: 0px;
+}
+
+
+
+nav > ul {
+    list-style: none;
+    padding: 10px;
+    background-color: blue;
+}

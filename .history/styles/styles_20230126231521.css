@@ -1,0 +1,46 @@
+body {
+    margin: 0px;
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(207, 2, 53);
+    display: flex;
+    justify-content: flex-end;
+    margin: 0px;
+    
+}
+
+nav > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+}
+
+nav > ul > li {
+    float: left;
+    display: inline;
+    font-size: 3;
+}
+
+nav > ul > li > a {
+    display: block;
+    padding: 16px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+nav > ul > li > a:hover {
+    background-color: rgba(0, 0, 0, 0.123);
+}
+
+#mainContent {
+    margin-top: 50px;
+}
+
+#heroSection{
+    background-color:rgb(1, 0, 58);
+}

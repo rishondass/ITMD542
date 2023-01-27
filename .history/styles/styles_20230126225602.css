@@ -1,0 +1,35 @@
+body {
+    margin: 0px;
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: red;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0px;
+    height: 64px;
+}
+
+nav > ul {
+    
+    list-style: none;
+    
+    
+    
+}
+
+nav > ul > li {
+    float: left;
+    background-color: rgba(0, 0, 255, 0.123);
+    width: 80px;
+    margin: 0px;
+    padding: 10px 100%;
+    text-align: center;
+}
+
+#mainContent {
+    margin-top: 100px;
+}

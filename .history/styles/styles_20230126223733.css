@@ -1,0 +1,9 @@
+nav {
+   background-color: red;
+   display: flex;
+   ali
+}
+
+nav > ul > li {
+    list-style: none;
+}

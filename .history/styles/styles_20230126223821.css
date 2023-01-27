@@ -1,0 +1,13 @@
+nav {
+   background-color: red;
+   display: flex;
+   
+}
+
+
+
+nav > ul {
+    list-style: none;
+    align-content: flex-end;
+    background-color: blue;
+}
