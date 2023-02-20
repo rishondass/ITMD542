@@ -17,7 +17,7 @@ const getContacts = (req,res) => {
 }
 
 router.get('/', function(req, res, next) {
-    res.render('contacts', {contactsData : database.contactsData, msg: ""});
+    res.render('contacts', {contactsData : database.contactsData});
 });
 
 
@@ -36,7 +36,7 @@ router.get("/edit/:id", (req,res,next)=>{
 router.post('/',
 body('firstName').trim().notEmpty(),
 body('lastName').trim().notEmpty(),
-body('email').isEmail(),
+body('email').isEmpty().isEmail(),
 (req,res,next) => {
     const result = validationResult(req);
     if(!result.isEmpty()){

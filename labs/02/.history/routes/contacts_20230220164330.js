@@ -36,7 +36,7 @@ router.get("/edit/:id", (req,res,next)=>{
 router.post('/',
 body('firstName').trim().notEmpty(),
 body('lastName').trim().notEmpty(),
-body('email').isEmail(),
+body('email').isEmpty().isEmail(),
 (req,res,next) => {
     const result = validationResult(req);
     if(!result.isEmpty()){

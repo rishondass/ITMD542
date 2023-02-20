@@ -9,25 +9,16 @@
     <script src="js/contacts.js"></script>
 </head>
 <body class="m-10">
-    <div class="bg-rose-400 rounded-md">
-        <%if(msg){%>
-            <ul>
-            <%for(var i = 0; i < msg.length; i++){%>
-                    <li><%=msg[i].param%> : <%=msg[i].msg%></li>
-            <%}%>
-            </ul>
-        <%}%>
-    </div>
     <div id="createContactModal" class="hidden bg-black bg-opacity-50 fixed inset-0 z-9 flex justify-center items-center">
         <div class="bg-white w-96 h-auto p-5 rounded-md">
             <div class="flex justify-end">
                 <button id="closeContactModalBtn"><img src="img/closeIcon.svg" alt="closeIcon" width="25px"></button>
             </div>
-            <form id="createContactForm" action="/contacts" method="POST" class="flex flex-col">
+            <form id="createContactForm" action="/contacts/createContact" method="POST" class="flex flex-col">
                 <label for="firstName">First Name:</label>
-                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="firstName" id="firstName">
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="firstName" id="firstName" >
                 <label for="lastName">Last Name:</label>
-                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="lastName" id="lastName">
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="lastName" id="lastName" >
                 <label for="email">Email:</label>
                 <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="email" name="email" id="email">
                 <label for="notes">Notes:</label>

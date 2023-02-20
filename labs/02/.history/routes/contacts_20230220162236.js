@@ -17,7 +17,7 @@ const getContacts = (req,res) => {
 }
 
 router.get('/', function(req, res, next) {
-    res.render('contacts', {contactsData : database.contactsData, msg: ""});
+    res.render('contacts', {contactsData : database.contactsData});
 });
 
 
@@ -33,7 +33,7 @@ router.get("/edit/:id", (req,res,next)=>{
 });
 
 
-router.post('/',
+router.post('/createContact',
 body('firstName').trim().notEmpty(),
 body('lastName').trim().notEmpty(),
 body('email').isEmail(),

@@ -17,7 +17,7 @@ const getContacts = (req,res) => {
 }
 
 router.get('/', function(req, res, next) {
-    res.render('contacts', {contactsData : database.contactsData, msg: ""});
+    res.render('contacts', {contactsData : database.contactsData});
 });
 
 
@@ -33,7 +33,7 @@ router.get("/edit/:id", (req,res,next)=>{
 });
 
 
-router.post('/',
+router.post('/createContact',
 body('firstName').trim().notEmpty(),
 body('lastName').trim().notEmpty(),
 body('email').isEmail(),
@@ -43,20 +43,7 @@ body('email').isEmail(),
         console.log(result.array());
         res.render('contacts',{contactsData : database.contactsData, msg : result.array()})
     }else{
-        var temp = req.body;
-        temp["contactID"] = parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(5).toString().replace(".", ""));
-        temp["date"] = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-        console.log(temp);
-        database.contactsData.push(temp);
-        database.saveData(database.contactsData)
-        .then(()=>{
-            console.log('saved data successfully');
-            res.status(200).redirect('/contacts');
-        })
-        .catch(()=>{
-            console.log('failed');
-            res.sendStatus(505);
-        })
+
     }
     
     

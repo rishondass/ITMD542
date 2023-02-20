@@ -9,10 +9,11 @@
     <script src="js/contacts.js"></script>
 </head>
 <body class="m-10">
-    <div class="bg-rose-400 rounded-md">
+    <div class="bg-rose-400">
         <%if(msg){%>
             <ul>
             <%for(var i = 0; i < msg.length; i++){%>
+                
                     <li><%=msg[i].param%> : <%=msg[i].msg%></li>
             <%}%>
             </ul>

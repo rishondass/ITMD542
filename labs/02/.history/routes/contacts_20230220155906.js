@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var database = require("../database/database");
-const {body, validationResult} = require('express-validator');
+const {body, validationResult} = require('expres')
 
 const getContacts = (req,res) => {
     if(req.params.id){
@@ -17,7 +17,7 @@ const getContacts = (req,res) => {
 }
 
 router.get('/', function(req, res, next) {
-    res.render('contacts', {contactsData : database.contactsData, msg: ""});
+    res.render('contacts', {contactsData : database.contactsData});
 });
 
 
@@ -33,32 +33,20 @@ router.get("/edit/:id", (req,res,next)=>{
 });
 
 
-router.post('/',
-body('firstName').trim().notEmpty(),
-body('lastName').trim().notEmpty(),
-body('email').isEmail(),
-(req,res,next) => {
-    const result = validationResult(req);
-    if(!result.isEmpty()){
-        console.log(result.array());
-        res.render('contacts',{contactsData : database.contactsData, msg : result.array()})
-    }else{
-        var temp = req.body;
-        temp["contactID"] = parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(5).toString().replace(".", ""));
-        temp["date"] = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-        console.log(temp);
-        database.contactsData.push(temp);
-        database.saveData(database.contactsData)
-        .then(()=>{
-            console.log('saved data successfully');
-            res.status(200).redirect('/contacts');
-        })
-        .catch(()=>{
-            console.log('failed');
-            res.sendStatus(505);
-        })
-    }
-    
+router.post('/createContact', (req,res,next) => {
+    var temp = req.body;
+    temp["contactID"] = parseInt(Math.ceil(Math.random() * Date.now()).toPrecision(5).toString().replace(".", ""));
+    temp["date"] = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    database.contactsData.push(req.body);
+    database.saveData(database.contactsData)
+    .then(()=>{
+        console.log('saved data successfully');
+        res.status(200).redirect('/contacts');
+    })
+    .catch(()=>{
+        console.log('failed');
+        res.sendStatus(505);
+    })
     
 });
 
