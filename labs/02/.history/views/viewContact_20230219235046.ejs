@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-10">
+    <div class="text-center text-2xl">
+        <h1><%=contactsData.firstName%>'s Info</h1>
+    </div>
+    <div class="flex">
+        <button id="editContactBtn" class="rounded-md p-3 px-6 text-white bg-green-400 hover:bg-green-500" onclick="location.href = '/contacts/edit/<%=contactsData.contactID%>';">Edit</button>
+        <form action="/contacts/deleteContact/<%=contactsData.contactID%>" method="POST">
+            <button id="deleteContactBtn" class="rounded-md p-3 px-6 text-white bg-green-400 hover:bg-green-500">Delete</button>
+        </form>
+    </div>
+    <div>
+        <h3>ContactID:</h3>
+        <h4 class="text-center"><%=contactsData.contactID%></h4>
+        <h3>First Name:</h3>
+        <h4 class="text-center"><%=contactsData.firstName%></h4>
+        <h3>Last Name:</h3>
+        <h4 class="text-center"><%=contactsData.lastName%></h4>
+        <h3>Email:</h3>
+        <h4 class="text-center"><%=contactsData.email%></h4>
+        <h3>Notes:</h3>
+        <h4 class="text-center"><%=contactsData.notes%></h4>
+        <h3>Date:</h3>
+        <h4 class="text-center"><%=contactsData.date%></h4>
+    </div>
+    
+   
+</body>
+</html>
