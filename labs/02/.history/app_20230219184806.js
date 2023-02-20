@@ -25,7 +25,6 @@ app.use('/users', usersRouter);
 app.use('/contacts', contactsRouter);
 
 app.use("/img",express.static(path.resolve(__dirname,"public/images")));
-app.use("/js",express.static(path.resolve(__dirname,"public/javascripts")));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

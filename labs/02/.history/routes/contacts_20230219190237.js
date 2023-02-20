@@ -5,8 +5,6 @@ router.get('/', function(req, res, next) {
     res.render('contacts');
 });
 
-router.post('/createContact', (req,res,next) => {
-    
-});
+router.post('/')
 
 module.exports = router;
