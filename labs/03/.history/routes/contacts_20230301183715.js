@@ -16,29 +16,22 @@ const getContacts = (req,res) => {
     
 }
 
-
 router.get('/', function(req, res, next) {
-    database.db.all("SELECT * FROM Contacts;", function(err, rows) {
-        res.render('contacts', {contactsData : rows, msg: ""});
-    });	
-    
+    //console.log(database.contactsData);
+    const data = database.getData();
+    console.log(data);
+    res.render('contacts', {contactsData : database.contactsData, msg: ""});
 });
 
 
 router.get('/api/getContacts', getContacts);
 router.get('/:id', (req,res,next)=>{
-    database.db.all("SELECT * FROM Contacts WHERE contactID = ?;",[req.params.id], function(err, rows) {
-        res.render("viewContact", {contactsData : rows[0]});
-    });	
-    
+    res.render("viewContact", {contactsData : getContacts(req,res)});
 });
 
 router.get("/edit/:id", (req,res,next)=>{
     if(req.params.id){
-        database.db.all("SELECT * FROM Contacts WHERE contactID = ?;",[req.params.id], function(err, rows) {
-            res.render('contactEdit', {contactsData : rows[0]});
-        });	
-        
+        res.render('contactEdit', {contactsData : getContacts(req,res)})
     }
 });
 
@@ -76,10 +69,14 @@ router.post('/deleteContact/:id', (req,res,next)=>{
     console.log('here')
     if(req.params.id){
         const id = req.params.id;
-        database.db.all("DELETE FROM Contacts WHERE contactID = ?;",[req.params.id], function(err, rows) {
-            res.status(200).redirect('/contacts');
-        });
-        
+        var temp = [];
+        for(var i = 0; i < database.contactsData.length; i++){
+            if(database.contactsData[i].contactID != id){
+                temp.push(database.contactsData[i])
+            }
+        }
+        database.contactsData = temp;
+        res.status(200).redirect('/contacts');
     }else{
         res.sendStatus(500);
     }
@@ -91,7 +88,7 @@ router.post('/editContact', (req,res,next)=>{
     if(req.body.contactID){
         var temp = req.body;
         temp["date"] = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-        database.editData(temp)
+        database.editData(database.contactsData)
         .then(()=>{
             console.log('saved data successfully');
             res.status(200).redirect(`/contacts/${temp.contactID}`);
@@ -100,6 +97,14 @@ router.post('/editContact', (req,res,next)=>{
             console.log('failed');
             res.sendStatus(505);
         })
+        // for(var i = 0; i < database.contactsData.length; i++){
+        //     if(req.body.contactID == database.contactsData[i].contactID){
+                
+        //         database.contactsData[i] = temp;
+                
+        //         break;
+        //     }
+        // }
     }else{
         res.sendStatus(500);
     }

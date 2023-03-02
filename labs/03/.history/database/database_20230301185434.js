@@ -29,6 +29,22 @@ const initDatabase = () => {
    
 }
 
+const getData = () =>{
+    var sql = `SELECT * FROM Contacts`;
+    let data = [];
+    console.log("data retrieved successfully");
+    db.all(sql, [], (err,rows)=>{
+        if(err){
+            console.log(err.message);
+        }
+        rows.forEach((row)=>{
+            console.log(row);
+            data.push(row);
+        });
+        
+    });
+    console.log(data);
+}
 
 
 //saves the data into the data.json file
@@ -52,20 +68,20 @@ const saveData = (data) => {
 }
 
 const editData = (data) => {
-    //console.log(data);
-    return new Promise((resolve, reject) => {
-        const sql = `UPDATE Contacts SET firstName = ?, lastName = ?, email = ?, notes = ?, date = ? WHERE contactID = ?;
-            `;
+    console.log(data);
+    // return new Promise((resolve, reject) => {
+    //     const sql = `UPDATE Contacts SET firstName = ?, lastName = ?, email = ?, notes = ?, date = ? WHERE contactID = ?;
+    //         `;
 
-            db.run(sql,[data.firstName,data.lastName,data.email,data.notes,data.date,data.contactID],(err)=>{
-                if(err){
-                    console.log(err);
-                    reject(err);
-                }
-                console.log("data edited successfully");
-                resolve();
-            });
-    });
+    //         db.run(sql,[data.firstName,data.lastName,data.email,data.notes,data.date,data.contactID],(err)=>{
+    //             if(err){
+    //                 console.log(err);
+    //                 reject(err);
+    //             }
+    //             console.log("data edited successfully");
+    //             resolve();
+    //         });
+    // });
 }
 
 
@@ -73,4 +89,5 @@ const editData = (data) => {
 exports.initDatabase = initDatabase;
 exports.saveData = saveData;
 exports.editData = editData;
+exports.getData = getData;
 exports.db = db;

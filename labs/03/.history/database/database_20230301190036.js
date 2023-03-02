@@ -29,6 +29,27 @@ const initDatabase = () => {
    
 }
 
+const getData = () =>{
+    var sql = `SELECT * FROM Contacts`;
+    let data = [];
+    console.log("data retrieved successfully");
+    // db.all(sql, function(err,rows){
+    //     if(err){
+    //         console.log(err.message);
+    //     }
+    //     for(var i = 0; i < rows.length; i++){
+    //         data[i] = rows[i];
+    //         //console.log(rows[i]);
+    //     }
+        
+    // });
+    db.all(sql, function(err, rows) {
+        rows.forEach(function (row) {
+            /console.log(row);
+        })
+	});	
+    console.log(data);
+}
 
 
 //saves the data into the data.json file
@@ -52,20 +73,20 @@ const saveData = (data) => {
 }
 
 const editData = (data) => {
-    //console.log(data);
-    return new Promise((resolve, reject) => {
-        const sql = `UPDATE Contacts SET firstName = ?, lastName = ?, email = ?, notes = ?, date = ? WHERE contactID = ?;
-            `;
+    console.log(data);
+    // return new Promise((resolve, reject) => {
+    //     const sql = `UPDATE Contacts SET firstName = ?, lastName = ?, email = ?, notes = ?, date = ? WHERE contactID = ?;
+    //         `;
 
-            db.run(sql,[data.firstName,data.lastName,data.email,data.notes,data.date,data.contactID],(err)=>{
-                if(err){
-                    console.log(err);
-                    reject(err);
-                }
-                console.log("data edited successfully");
-                resolve();
-            });
-    });
+    //         db.run(sql,[data.firstName,data.lastName,data.email,data.notes,data.date,data.contactID],(err)=>{
+    //             if(err){
+    //                 console.log(err);
+    //                 reject(err);
+    //             }
+    //             console.log("data edited successfully");
+    //             resolve();
+    //         });
+    // });
 }
 
 
@@ -73,4 +94,5 @@ const editData = (data) => {
 exports.initDatabase = initDatabase;
 exports.saveData = saveData;
 exports.editData = editData;
+exports.getData = getData;
 exports.db = db;

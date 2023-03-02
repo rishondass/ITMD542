@@ -76,10 +76,14 @@ router.post('/deleteContact/:id', (req,res,next)=>{
     console.log('here')
     if(req.params.id){
         const id = req.params.id;
-        database.db.all("DELETE FROM Contacts WHERE contactID = ?;",[req.params.id], function(err, rows) {
-            res.status(200).redirect('/contacts');
-        });
-        
+        var temp = [];
+        for(var i = 0; i < database.contactsData.length; i++){
+            if(database.contactsData[i].contactID != id){
+                temp.push(database.contactsData[i])
+            }
+        }
+        database.contactsData = temp;
+        res.status(200).redirect('/contacts');
     }else{
         res.sendStatus(500);
     }

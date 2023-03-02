@@ -76,8 +76,8 @@ router.post('/deleteContact/:id', (req,res,next)=>{
     console.log('here')
     if(req.params.id){
         const id = req.params.id;
-        database.db.all("DELETE FROM Contacts WHERE contactID = ?;",[req.params.id], function(err, rows) {
-            res.status(200).redirect('/contacts');
+        database.db.all("SELECT * FROM Contacts WHERE contactID = ?;",[req.params.id], function(err, rows) {
+            res.render('contactEdit', {contactsData : rows[0]});
         });
         
     }else{
