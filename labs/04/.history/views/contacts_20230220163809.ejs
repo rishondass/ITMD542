@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/contacts.js"></script>
+</head>
+<body class="m-10">
+    <div class="bg-rose-400">
+        <%%>
+    </div>
+    <div id="createContactModal" class="hidden bg-black bg-opacity-50 fixed inset-0 z-9 flex justify-center items-center">
+        <div class="bg-white w-96 h-auto p-5 rounded-md">
+            <div class="flex justify-end">
+                <button id="closeContactModalBtn"><img src="img/closeIcon.svg" alt="closeIcon" width="25px"></button>
+            </div>
+            <form id="createContactForm" action="/contacts" method="POST" class="flex flex-col">
+                <label for="firstName">First Name:</label>
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="firstName" id="firstName">
+                <label for="lastName">Last Name:</label>
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="lastName" id="lastName">
+                <label for="email">Email:</label>
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="email" name="email" id="email">
+                <label for="notes">Notes:</label>
+                <textarea class="p-2 focus:outline-none border border-green-400 rounded-md" id="notes" name="notes" form="createContactForm"></textarea>
+                <button type="submit" class="rounded-md mt-4 p-2 text-white bg-green-400 hover:bg-green-500">Add</button>
+            </form>
+        </div>
+        
+    </div>
+    <!-- <div id="editContactModal" class="hidden bg-black bg-opacity-50 fixed inset-0 z-9 flex justify-center items-center">
+        <div class="bg-white w-96 h-auto p-5">
+            <div class="flex justify-end">
+                <button id="closeContactModalBtn"><img src="img/closeIcon.svg" alt="closeIcon" width="25px"></button>
+            </div>
+            <form id="editContactForm" action="/editContact" method="POST" class="flex flex-col rounded-md">
+                <label for="firstName">First Name:</label>
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="firstName" id="firstName" required>
+                <label for="lastName">Last Name:</label>
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="text" name="lastName" id="lastName" required>
+                <label for="email">Email:</label>
+                <input class="p-2 focus:outline-none border border-green-400 rounded-md" type="email" name="email" id="email">
+                <label for="notes">Notes:</label>
+                <textarea class="p-2 focus:outline-none border border-green-400 rounded-md" id="notes" name="notes" form="createContactForm"></textarea>
+                <button type="submit" class="rounded-md mt-4 p-2 text-white bg-green-400 hover:bg-green-500">Add</button>
+            </form>
+        </div>
+        
+    </div> -->
+    <div>
+        <h1 class="text-center text-2xl">Contacts Database</h1>
+        <a href="/" class="rounded-md p-2 text-white bg-green-400 hover:bg-green-500">Home</a>
+        <button id="createContactBtn" class="rounded-md p-2 text-white bg-green-400 hover:bg-green-500">Create</button>
+    </div>
+    <div class="flex justify-center p-4">
+        <table class="table-auto">
+            <thead class="bg-green-400 rounded-lg text-white">
+              <tr>
+                <th class="px-4">First Name</th>
+                <th class="px-4">Last Name</th>
+                <th class="px-4">Email Address</th>
+                <th class="px-4"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <%for(var i = 0; i < contactsData.length; i++){%>
+                    <tr>
+                        <td class="px-4"><%=contactsData[i].firstName%></td>
+                        <td class="px-4"><%=contactsData[i].lastName%></td>
+                        <td class="px-4"><%=contactsData[i].email%></td>
+                        <td class="px-4"><button class="viewBtn" data-id="<%=contactsData[i].contactID%>">view</button></td>
+                    </tr>
+                <%}%>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>

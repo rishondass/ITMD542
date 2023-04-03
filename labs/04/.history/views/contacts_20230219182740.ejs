@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="m-10">
+    <div class="bg-black bg-opacity-50 fixed inset-0 z-9 flex justify-center">
+        <form action="/createContact"></form>
+    </div>
+    <div>
+        <h1 class="text-center text-2xl">Contacts Database</h1>
+        <a href="/" class="rounded-md p-2 text-white bg-green-400 hover:bg-green-500">Home</a>
+        <button href="/" class="rounded-md p-2 text-white bg-green-400 hover:bg-green-500">Create</button>
+    </div>
+    <div class="flex justify-center p-4">
+        <table class="table-auto">
+            <thead class="bg-green-400 rounded-lg text-white">
+              <tr>
+                <th class="px-4">First Name</th>
+                <th class="px-4">Last Name</th>
+                <th class="px-4">Email Address</th>
+                <th class="px-4"></th>
+                <th class="px-4"></th>
+                <th class="px-4"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="px-4">Rishon</td>
+                <td class="px-4">Dass</td>
+                <td class="px-4">rdass1@hawk.iit.edu</td>
+                <td class="px-4"><a href="">view</a></td>
+                <td class="px-4"><a href="">edit</a></td>
+                <td class="px-4"><a href="">delete</a></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</body>
+</html>
