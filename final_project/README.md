@@ -40,6 +40,12 @@ You will be able to access the website on
 http://127.0.0.1:3000
 ```
 
+You can first login through
+```bash
+username: example
+password: example
+```
+
 #### Insights/Results
 I've learned how to create a login system using passport js. It was very challenging at first because I had to understand how passport js was working in order to configure it properly. I wanted to create a calculate field on mongodb but the expression kept resulting in errors.
 
