@@ -1,10 +1,10 @@
 # Rishon Dass
 Email: rdass1@hawk.iit.edu
 Class: ITMD 542 Final Project
-Git Repo: [lab04](https://github.com/rishondass/ITMD542/tree/main/labs/04)
+Git Repo: [final project](https://github.com/rishondass/ITMD542/tree/main/final_project)
 
 #### Project Description
-This lab we're working on a basic CRUD Node JS Express application. It acts as a contact database where we can create, edit, view, or delete contacts. We're using MongoDB atlas as our database to store information.
+This is the final project where I create a quoting software for sales team to use. It stores data about the customer, their email address, the product they're getting, and the quantity.
 
 #### Dev Environment
 OS: Windows 11 Pro
@@ -41,7 +41,7 @@ http://127.0.0.1:3000
 ```
 
 #### Insights/Results
-I've learned how to create a basic CRUD application. Some of the challenges were not using libraries and doing everything from scratch took a lot longer than expected. Something I couldn't get working was editing the information on the main page without having to change pages. The work around for this was that I created another page for the editing of the information.
+I've learned how to create a login system using passport js. It was very challenging at first because I had to understand how passport js was working in order to configure it properly. I wanted to create a calculate field on mongodb but the expression kept resulting in errors.
 
 #### References
 [TailWindCSS Docs](https://v2.tailwindcss.com/docs/)
