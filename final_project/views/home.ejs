@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sales Team Quotes</title>
+    <!-- Include Tailwind CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" />
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex justify-end w-full">
+        <button 
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          onclick="window.location.href='/users/add_login'"
+        >
+        Add Login
+      </button>
+      <button 
+          class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-4"
+          onclick="window.location.href='/logout'"
+        >
+        Logout
+      </button>
+      </div>
+      <h1 class="text-4xl font-bold mb-2">Add a Quote</h1>
+      <form method="POST" action="/quotes/create" class="mb-4">
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" for="name">
+            Name
+          </label>
+          <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="name"
+          type="text"
+          placeholder="Enter your name"
+          name="name"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="email">
+          Email
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="email"
+          type="email"
+          placeholder="Enter your email address"
+          name="email"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="product">
+          Product
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="product"
+          type="text"
+          placeholder="Enter the product name"
+          name="product"
+        />
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 font-bold mb-2" for="quantity">
+          Quantity
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="quantity"
+          type="number"
+          placeholder="Enter the quantity"
+          name="quantity"
+        />
+      </div>
+      <div class="flex items-center justify-between">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Add Quote
+        </button>
+      </div>
+    </form>
+      <h1 class="text-3xl font-bold mb-4">Sales Team Quotes</h1>
+      <% if (quotes.length > 0) { %>
+      <table class="w-full border-collapse mb-4">
+        <thead>
+          <tr>
+            <th class="text-left py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-700 border-b border-gray-400">Name</th>
+            <th class="text-left py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-700 border-b border-gray-400">Email</th>
+            <th class="text-left py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-700 border-b border-gray-400">Product</th>
+            <th class="text-left py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-700 border-b border-gray-400">Quantity</th>
+            <th class="text-left py-2 px-4 bg-gray-200 font-bold uppercase text-sm text-gray-700 border-b border-gray-400">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% quotes.forEach(function(quote) { %>
+          <tr class="hover:bg-gray-100">
+            <td class="py-2 px-4 border-b border-gray-400"><%= quote.name %></td>
+            <td class="py-2 px-4 border-b border-gray-400"><%= quote.email %></td>
+            <td class="py-2 px-4 border-b border-gray-400"><%= quote.product %></td>
+            <td class="py-2 px-4 border-b border-gray-400"><%= quote.quantity %></td>
+            <td class="py-2 px-4 border-b border-gray-400">
+              <a href="/quotes/edit/<%= quote._id %>" class="text-blue-500 hover:text-blue-700">Edit</a>
+              <form method="POST" action="/quotes/delete/<%= quote._id %>" class="inline-block">
+                <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <p>No quotes found.</p>
+      <% } %>
+
+  </div>
+</body>
+</html>
